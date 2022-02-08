@@ -1,20 +1,33 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+#!/user/bin/env python3.10
+"""
+Factorial calculation, implemented in 3 functions
+"""
 
 
 def for_factorial(val: int):
-    for i in range(val-1, 1, -1):
-        print(val)
-        val = val * i
+    """
+    Factorial in for-loop
+    :param val:
+    :return:
+    """
+    for i in range(val - 1, 1, -1):
+        val *= i
     return val
 
-#def
+
+def while_factorial(val: int):
+    """
+    Factorial in while-loop
+    :param val:
+    :return:
+    """
+    val_mutator = val - 1
+    while val != 0:
+        val *= val-1
+        val -=1
+    return val
 
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     print(for_factorial(6))
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+    print(while_factorial(6))
