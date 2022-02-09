@@ -19,13 +19,13 @@ def for_factorial(val: int):
 def while_factorial(val: int):
     """
     Factorial in while-loop
-    TODO: Make it work
     :param val:
     :return:
     """
-    while val != 0:
-        val *= val - 1
-        val -= 1
+    val_tick = val
+    while val_tick > 1:
+        val_tick -= 1
+        val *= val_tick
     return val
 
 
