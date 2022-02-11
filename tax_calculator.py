@@ -3,8 +3,14 @@ Tax calc
 """
 
 
+# https://www.ird.govt.nz/income-tax/income-tax-for-individuals/tax-codes-and-tax-rates-for-individuals/tax-rates-for
+# -individuals
 def calculate_income_tax(weekly_pay: float):
-    # https://www.ird.govt.nz/income-tax/income-tax-for-individuals/tax-codes-and-tax-rates-for-individuals/tax-rates-for-individuals
+    """
+
+    :param weekly_pay:
+    :return:
+    """
     bracket_10_5 = 14000 * 0.105
     bracket_17_5 = 34000 * 0.175
     bracket_30 = 22000 * 0.3
@@ -20,7 +26,8 @@ def calculate_income_tax(weekly_pay: float):
         tax_paid = ((weekly_pay - 132000) * 0.33) + bracket_10_5 + bracket_17_5 + bracket_30
     else:
         tax_paid = ((weekly_pay - 132000) * 0.39) + bracket_10_5 + bracket_17_5 + bracket_30 + bracket_33
+    return tax_paid
 
 
 income_after_tax = calculate_income_tax(int(input("Enter your weekly pay: ").strip()))
-print(income_after_tax)
+print("$", income_after_tax, sep = "")
