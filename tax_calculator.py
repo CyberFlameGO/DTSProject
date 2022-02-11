@@ -1,3 +1,4 @@
+#!/user/bin/env python3.10
 """
 Tax calc with if and elif because lazy
 """

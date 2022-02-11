@@ -1,3 +1,4 @@
+#!/user/bin/env python3.10
 """
 Bubble sorting
 """
