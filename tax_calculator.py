@@ -1,5 +1,5 @@
 """
-Tax calc
+Tax calc with if and elif because lazy
 """
 
 
