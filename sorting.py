@@ -25,7 +25,7 @@ def bubble_sort(array: list) -> object:
     return sorted_array, swap_count
 
 
-array_test = [1, 2, 6, 3, 2, 5, 6, 77, 3, 21, 4, 8]
+array_test = [1, 2, 6, 3, 2, 5, 6, 77, 3, 21, 4, 8, 0.5, 0, 1, 1, 1, 132455454, 565656]
 
 sorted_arr, num_swaps = bubble_sort(array_test)
 print("Unsorted list: ", array_test, "\nSorted list: ", sorted_arr, f"\nSwap count: {num_swaps}", sep = "")
