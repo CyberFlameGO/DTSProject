@@ -1,4 +1,4 @@
-#!/user/bin/env python3.10
+#!/usr/bin/env python3.10
 """
 Dice sim
 """
