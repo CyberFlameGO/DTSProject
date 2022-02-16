@@ -43,6 +43,7 @@ for i in range(0, 100):
         occurrences.append(solver_sum)
     totals.append(solver_sum)
 
+# Logic is set up bu
 for key in dupes.keys():
     print(key / len(dupes.keys()))
 
