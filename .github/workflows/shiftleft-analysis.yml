@@ -17,11 +17,23 @@ on:
   schedule:
     - cron: '25 9 * * 0'
 
+permissions:
+  contents: read
+
 jobs:
   Scan-Build:
     # Scan runs on ubuntu, mac and windows
+    permissions:
+      contents: read # for actions/checkout to fetch code
+      pull-requests: write # for ShiftLeftSecurity/scan-action to add comments in pull request
+      security-events: write # for github/codeql-action/upload-sarif to upload SARIF results
     runs-on: ubuntu-latest
     steps:
+    - name: Harden Runner
+      uses: step-security/harden-runner@v1
+      with:
+        egress-policy: audit # TODO: change to 'egress-policy: block' after couple of runs
+
     - uses: actions/checkout@v2
     # Instructions
     # 1. Setup JDK, Node.js, Python etc depending on your project type
