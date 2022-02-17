@@ -13,6 +13,9 @@ on:
   schedule:
     - cron: '23 8 * * 2'
 
+permissions:
+  contents: read
+
 jobs:
   lint:
     name: DevSkim
