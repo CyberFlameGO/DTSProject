@@ -28,6 +28,7 @@ def new_food():
 
 def main():
     pygame.init()
+    pygame.display.set_caption("Snakesy")
     clock = pygame.time.Clock()
     snake_display = pygame.display.set_mode((DISPLAY_WIDTH, DISPLAY_HEIGHT))
 
