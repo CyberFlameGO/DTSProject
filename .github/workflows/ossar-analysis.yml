@@ -50,7 +50,7 @@ jobs:
 
       # Run open source static analysis tools
     - name: Run OSSAR
-      uses: github/ossar-action@18202dc5f5cdf7ca97cf339a6ab58ec01113b655 # v1
+      uses: github/ossar-action@992a9b299cd4932d1698710f84cd6f557ec72400
       id: ossar
 
       # Upload results to the Security tab
