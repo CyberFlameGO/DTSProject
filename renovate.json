@@ -6,6 +6,8 @@
     {
       "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": true
-    }
+      "automergeType": "branch"
+    },
+   "assigneesFromCodeOwners": true
   ]
 }
