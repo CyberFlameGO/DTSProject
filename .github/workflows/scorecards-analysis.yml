@@ -24,7 +24,7 @@ jobs:
         
   analysis:
     name: Scorecards analysis
-    if: steps.branch-name.outputs.is_default == 'true'
+    if: getbranch.branch-name.outputs.is_default == 'true'
     needs: getbranch
     runs-on: ubuntu-latest
     permissions:
