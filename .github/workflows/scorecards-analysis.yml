@@ -16,6 +16,7 @@ jobs:
   analysis:
     name: Scorecards analysis
     runs-on: ubuntu-latest
+    if: steps.branch-name.outputs.is_default == 'true'
     permissions:
       # Needed to upload the results to code-scanning dashboard.
       security-events: write
