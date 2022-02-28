@@ -26,7 +26,7 @@ jobs:
         
   analysis:
     name: Scorecards analysis
-    if: needs.getbranch.outputs.branchout == 'true'
+    if: ${{ needs.getbranch.outputs.branchout }} == 'true'
     needs: getbranch
     runs-on: ubuntu-latest
     permissions:
