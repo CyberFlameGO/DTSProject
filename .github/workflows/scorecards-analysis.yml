@@ -16,6 +16,7 @@ jobs:
         
   analysis:
     name: Scorecards analysis
+    if: ${{ github.refname }} == 'master'
     runs-on: ubuntu-latest
     permissions:
       # Needed to upload the results to code-scanning dashboard.
