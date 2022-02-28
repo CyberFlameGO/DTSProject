@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     
     outputs:
-      branchout: ${{ steps.branch-name.outputs.is_default == 'true' }}
+      branchout: ${{ steps.branch-name.outputs.is_default }}
     steps: 
       - name: Get branch name
         id: branch-name
