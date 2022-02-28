@@ -17,6 +17,8 @@ jobs:
     name: Branch getter
     runs-on: ubuntu-latest
     
+    outputs:
+      branchout: ${{ steps.branch-name.outputs.is_default == 'true' }}
     steps: 
       - name: Get branch name
         id: branch-name
