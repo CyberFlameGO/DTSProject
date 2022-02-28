@@ -13,21 +13,10 @@ on:
 permissions: read-all
 
 jobs:
-  getbranch:
-    name: Branch getter
-    runs-on: ubuntu-latest
-    
-    outputs:
-      branchout: ${{ steps.branch-name.outputs.current_branch }}
-    steps: 
-      - name: Get branch name
-        id: branch-name
-        uses: CyberFlameGO/branch-names@6583ff7de9739def9bef81b43a1bf627710971db
         
   analysis:
     name: Scorecards analysis
-    if: ${{ needs.getbranch.outputs.branchout }} == 'master'
-    needs: getbranch
+    if: ${{ github.refname == 'master' }}
     runs-on: ubuntu-latest
     permissions:
       # Needed to upload the results to code-scanning dashboard.
