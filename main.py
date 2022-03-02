@@ -2,10 +2,10 @@
 SNEKSY GAME
 """
 import collections
-from typing import Union
-
 import pygame
+
 from random import randint
+from typing import Union
 
 FOOD_SIZE: int = 10
 DISPLAY_WIDTH: int = 640
