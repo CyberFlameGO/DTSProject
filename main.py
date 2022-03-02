@@ -15,22 +15,22 @@ SNAKE_COLOR: tuple[int, int, int] = (236, 240, 241)
 FOOD_COLOR: tuple[int, int, int] = (241, 196, 15)
 
 
-def draw_food(display: pygame.Surface | pygame.SurfaceType, coords: collections.Iterable) -> object:
+def draw_entity(display: pygame.Surface | pygame.SurfaceType, coords, color) -> object:
     """
     Draw food
     :param display:
     :param coords:
     :return:
     """
-    new_food_list: list[Union[pygame.Rect, pygame.RectType]] = []
+    new_list: list[Union[pygame.Rect, pygame.RectType]] = []
     pair: object
     for pair in coords:
-        new_food_list.append(pygame.draw.rect(display,
-                                              FOOD_COLOR,
+        new_list.append(pygame.draw.rect(display,
+                                              color,
                                               (pair[0],
                                                pair[1],
                                                FOOD_SIZE, FOOD_SIZE)))
-    return new_food_list
+    return new_list
 
 
 def new_food():
@@ -70,11 +70,11 @@ def main():
     while not game_over:
         if len(food_coordinates) == 0:
             food_coordinates.append(new_food())
-        clock.tick(25)
+        clock.tick(62)
         snake_display.fill(BG_COLOR)
 
         snake: Union[pygame.Rect, pygame.RectType] = pygame.draw.rect(snake_display, SNAKE_COLOR, snake_rectangle)
-        food_list: Union[pygame.Rect | any | object] = draw_food(snake_display, food_coordinates)
+        food_list: Union[pygame.Rect | any | object] = draw_entity(snake_display, food_coordinates, FOOD_COLOR)
         pygame.display.update()
         for event in pygame.event.get():
             match event.type:
@@ -83,17 +83,17 @@ def main():
                 case pygame.KEYDOWN:
                     match event.key:
                         case pygame.K_LEFT:
-                            snake_x_change = -FOOD_SIZE
-                            snake_y_change = 0
+                            snake_x_change += -FOOD_SIZE
+                            snake_y_change += 0
                         case pygame.K_RIGHT:
-                            snake_x_change = FOOD_SIZE
-                            snake_y_change = 0
+                            snake_x_change += FOOD_SIZE
+                            snake_y_change += 0
                         case pygame.K_UP:
-                            snake_x_change = 0
-                            snake_y_change = -FOOD_SIZE
+                            snake_x_change += 0
+                            snake_y_change += -FOOD_SIZE
                         case pygame.K_DOWN:
-                            snake_x_change = 0
-                            snake_y_change = FOOD_SIZE
+                            snake_x_change += 0
+                            snake_y_change += FOOD_SIZE
 
         snake_rectangle: object = snake_rectangle.move(snake_x_change, snake_y_change)
         if snake.x < 0:
