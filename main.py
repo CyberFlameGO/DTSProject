@@ -15,10 +15,8 @@ SNAKE_COLOR: tuple[int, int, int] = (236, 240, 241)
 FOOD_COLOR: tuple[int, int, int] = (241, 196, 15)
 
 
-
-
 def draw_entity(
-        display: pygame.Surface | pygame.SurfaceType, coords, color: tuple[int, int, int]
+    display: pygame.Surface | pygame.SurfaceType, coords, color: tuple[int, int, int]
 ) -> object:
     """
     Draw food
