@@ -15,9 +15,11 @@ SNAKE_COLOR: tuple[int, int, int] = (236, 240, 241)
 FOOD_COLOR: tuple[int, int, int] = (241, 196, 15)
 
 
-def draw_entity(display: pygame.Surface | pygame.SurfaceType, coords, color) -> object:
+def draw_entity(display: pygame.Surface | pygame.SurfaceType,
+                coords: collections.Iterable, color: tuple[int, int, int]) -> object:
     """
     Draw food
+    :param color:
     :param display:
     :param coords:
     :return:
@@ -26,10 +28,10 @@ def draw_entity(display: pygame.Surface | pygame.SurfaceType, coords, color) -> 
     pair: object
     for pair in coords:
         new_list.append(pygame.draw.rect(display,
-                                              color,
-                                              (pair[0],
-                                               pair[1],
-                                               FOOD_SIZE, FOOD_SIZE)))
+                                          color,
+                                          (pair[0],
+                                           pair[1],
+                                           FOOD_SIZE, FOOD_SIZE)))
     return new_list
 
 
