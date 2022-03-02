@@ -1,10 +1,11 @@
 ﻿"""
 SNEKSY GAME
 """
-import pygame
 
 from random import randint
 from typing import Union
+
+import pygame
 
 FOOD_SIZE: int = 10
 DISPLAY_WIDTH: int = 640
@@ -16,8 +17,9 @@ FOOD_COLOR: tuple[int, int, int] = (241, 196, 15)
 
 
 
-def draw_entity(display: pygame.Surface | pygame.SurfaceType,
-                coords, color: tuple[int, int, int]) -> object:
+def draw_entity(
+        display: pygame.Surface | pygame.SurfaceType, coords, color: tuple[int, int, int]
+) -> object:
     """
     Draw food
     :param color:
@@ -28,7 +30,9 @@ def draw_entity(display: pygame.Surface | pygame.SurfaceType,
     new_list: list[Union[pygame.Rect, pygame.RectType]] = []
     pair: object
     for pair in coords:
-        new_list.append(pygame.draw.rect(display, color, (pair[0], pair[1], FOOD_SIZE, FOOD_SIZE)))
+        new_list.append(
+            pygame.draw.rect(display, color, (pair[0], pair[1], FOOD_SIZE, FOOD_SIZE))
+        )
     return new_list
 
 
@@ -46,7 +50,9 @@ def main():
     pygame.init()
     pygame.display.set_caption("Snakesy")
     clock: pygame.Clock = pygame.time.Clock()
-    snake_display: Union[pygame.Surface, pygame.SurfaceType] = pygame.display.set_mode((DISPLAY_WIDTH, DISPLAY_HEIGHT))
+    snake_display: Union[pygame.Surface, pygame.SurfaceType] = pygame.display.set_mode(
+        (DISPLAY_WIDTH, DISPLAY_HEIGHT)
+    )
 
     pygame.display.update()
 
@@ -72,8 +78,12 @@ def main():
         clock.tick(62)
         snake_display.fill(BG_COLOR)
 
-        snake: Union[pygame.Rect, pygame.RectType] = pygame.draw.rect(snake_display, SNAKE_COLOR, snake_rectangle)
-        food_list: Union[pygame.Rect | any | object] = draw_entity(snake_display, food_coordinates, FOOD_COLOR)
+        snake: Union[pygame.Rect, pygame.RectType] = pygame.draw.rect(
+            snake_display, SNAKE_COLOR, snake_rectangle
+        )
+        food_list: Union[pygame.Rect | any | object] = draw_entity(
+            snake_display, food_coordinates, FOOD_COLOR
+        )
         pygame.display.update()
         for event in pygame.event.get():
             match event.type:
@@ -96,11 +106,15 @@ def main():
 
         snake_rectangle: object = snake_rectangle.move(snake_x_change, snake_y_change)
         if snake.x < 0:
-            snake_rectangle.update(DISPLAY_WIDTH - FOOD_SIZE, snake.y, FOOD_SIZE, FOOD_SIZE)
+            snake_rectangle.update(
+                DISPLAY_WIDTH - FOOD_SIZE, snake.y, FOOD_SIZE, FOOD_SIZE
+            )
         elif snake.x > DISPLAY_WIDTH - FOOD_SIZE:
             snake_rectangle.update(0, snake.y, FOOD_SIZE, FOOD_SIZE)
         elif snake.y < 0:
-            snake_rectangle.update(snake.x, DISPLAY_HEIGHT - FOOD_SIZE, FOOD_SIZE, FOOD_SIZE)
+            snake_rectangle.update(
+                snake.x, DISPLAY_HEIGHT - FOOD_SIZE, FOOD_SIZE, FOOD_SIZE
+            )
         elif snake.y > DISPLAY_WIDTH - FOOD_SIZE:
             snake_rectangle.update(snake.x, 0, FOOD_SIZE, FOOD_SIZE)
 
