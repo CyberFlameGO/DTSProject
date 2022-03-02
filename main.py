@@ -1,7 +1,6 @@
 ﻿"""
 SNEKSY GAME
 """
-import collections
 import pygame
 
 from random import randint
@@ -15,8 +14,10 @@ SNAKE_COLOR: tuple[int, int, int] = (236, 240, 241)
 FOOD_COLOR: tuple[int, int, int] = (241, 196, 15)
 
 
+
+
 def draw_entity(display: pygame.Surface | pygame.SurfaceType,
-                coords: collections.Iterable, color: tuple[int, int, int]) -> object:
+                coords, color: tuple[int, int, int]) -> object:
     """
     Draw food
     :param color:
@@ -27,11 +28,7 @@ def draw_entity(display: pygame.Surface | pygame.SurfaceType,
     new_list: list[Union[pygame.Rect, pygame.RectType]] = []
     pair: object
     for pair in coords:
-        new_list.append(pygame.draw.rect(display,
-                                          color,
-                                          (pair[0],
-                                           pair[1],
-                                           FOOD_SIZE, FOOD_SIZE)))
+        new_list.append(pygame.draw.rect(display, color, (pair[0], pair[1], FOOD_SIZE, FOOD_SIZE)))
     return new_list
 
 
