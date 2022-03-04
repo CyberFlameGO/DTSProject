@@ -73,7 +73,7 @@ def main():
     while not game_over:
         if len(food_coordinates) == 0:
             food_coordinates.append(new_food())
-        clock.tick(62)
+        clock.tick(15)
         snake_display.fill(BG_COLOR)
 
         snake: Union[pygame.Rect, pygame.RectType] = pygame.draw.rect(
@@ -90,17 +90,17 @@ def main():
                 case pygame.KEYDOWN:
                     match event.key:
                         case pygame.K_LEFT:
-                            snake_x_change += -FOOD_SIZE
-                            snake_y_change += 0
+                            snake_x_change = -FOOD_SIZE
+                            snake_y_change = 0
                         case pygame.K_RIGHT:
-                            snake_x_change += FOOD_SIZE
-                            snake_y_change += 0
+                            snake_x_change = FOOD_SIZE
+                            snake_y_change = 0
                         case pygame.K_UP:
-                            snake_x_change += 0
-                            snake_y_change += -FOOD_SIZE
+                            snake_x_change = 0
+                            snake_y_change = -FOOD_SIZE
                         case pygame.K_DOWN:
-                            snake_x_change += 0
-                            snake_y_change += FOOD_SIZE
+                            snake_x_change = 0
+                            snake_y_change = FOOD_SIZE
 
         snake_rectangle: object = snake_rectangle.move(snake_x_change, snake_y_change)
         if snake.x < 0:
