@@ -27,12 +27,9 @@ while playing:
             case pygame.QUIT:
                 playing = False
             # TODO: figure out what event mousedown is because it's not keydown
-            case pygame.KEYDOWN:
-                print('d')
-                match event.key:
-                    case pygame.MOUSEBUTTONDOWN:
-                        print("nya")
-                        x, y = pygame.mouse.get_pos()
-                        if image.get_rect().collidepoint(x, y):
-                            print("printing dn")
+            case pygame.MOUSEBUTTONDOWN:
+                print("nya")
+                x, y = pygame.mouse.get_pos()
+                if image.get_rect().collidepoint(x, y):
+                    print("printing dn")
     pygame.display.update()
