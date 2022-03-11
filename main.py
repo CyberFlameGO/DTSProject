@@ -4,6 +4,8 @@ Work for when we are away
 
 from typing import Union
 
+import os
+os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "1"
 import pygame
 
 
@@ -17,18 +19,26 @@ display_surface: Union[pygame.Surface, pygame.SurfaceType] = pygame.display.set_
 )
 image = pygame.image.load(r'dn.gif')
 pygame.display.set_caption("dn")
+mario_x: int = 0
+mario_y: int = 0
 
 playing: bool = True
 while playing:
     display_surface.fill(WHITE)
-    mario = display_surface.blit(image, (0, 0))
+    mario = display_surface.blit(image, (mario_x, mario_y))
+    transit: bool = False
     for event in pygame.event.get():
         match event.type:
             case pygame.QUIT:
                 playing = False
             case pygame.MOUSEBUTTONDOWN:
-                print("nya")
-                x, y = pygame.mouse.get_pos()
-                if image.get_rect().collidepoint(x, y):
-                    print(u"printing dn")
+                # Check if left click
+                if pygame.mouse.get_pressed() == (1, 0, 0):
+                    x, y = pygame.mouse.get_pos()
+                    if image.get_rect().collidepoint(x, y):
+                        print(u"printing dn")
+                        transit = True
+    if transit:
+        mario_y -= 10
+
     pygame.display.update()
