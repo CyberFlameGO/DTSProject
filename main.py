@@ -12,7 +12,6 @@ import pygame
 DISPLAY_WIDTH: int = 640
 DISPLAY_HEIGHT: int = 480
 WHITE = (255, 255, 255)
-# TODO: Take a look at pygame fast-event
 
 display_surface: Union[pygame.Surface, pygame.SurfaceType] = pygame.display.set_mode(
     (DISPLAY_WIDTH, DISPLAY_HEIGHT)
