@@ -67,6 +67,8 @@ def main():
                         jumping = False
                 display_surface.fill(BLACK)
             red_rectangle = pygame.draw.rect(display_surface, DEEP_RED, (x, y, width, height))
+            if red_rectangle:  # remove this later when there's a proper use for the variable.
+                pass
             pygame.display.update()
 
 
