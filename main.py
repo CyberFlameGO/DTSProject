@@ -60,6 +60,8 @@ def main():
     """
     Main function
     """
+    global x, y, width, height, velocity, jumps, jumping, run
+    global jumping
     pygame.display.set_caption("dn")
     playing: bool = True
     while playing:
@@ -69,13 +71,19 @@ def main():
             if event.type == pygame.KEYDOWN:
                 pass
         keys: Sequence[bool] = pygame.key.get_pressed()
-
         if keys[pygame.K_LEFT]:
             if x > velocity:
                 x -= velocity
-        if keys[pygame.K_RIGHT]:
+                left = True
+                right = False
+        elif keys[pygame.K_RIGHT]:
             if x < DISPLAY_WIDTH - width - velocity:
                 x += velocity
+                left = False
+                right = True
+
+        else:
+            left, right = False, False
         if not jumping:
             if keys[pygame.K_SPACE]:
                 jumping = True
