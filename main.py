@@ -17,7 +17,7 @@ BLACK: tuple[int, int, int] = (0, 0, 0)
 DEEP_RED: tuple[int, int, int] = (255, 0, 0)
 
 pygame.init()
-
+clock = pygame.time.Clock()
 x: int = 0
 y: int = 400
 width: int = 64
@@ -47,12 +47,52 @@ display_surface: Union[pygame.Surface, pygame.SurfaceType] = pygame.display.set_
 )
 
 
-def redraw_gamewindow():
+class Player(object):
+    """
+    Player class oh yeah
+    """
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.velocity = 5
+        self.jumps: int = 10
+        self.jumping: bool = False
+        self.run: bool = True
+        self.left: bool = False
+        self.right: bool = False
+        self.walk_count: int = 0
+        self.bounding_box = (self.x + 17, self.y + 10,28,52)
+
+    def draw(self, window):
+        """
+        Draw
+        :param window:
+        """
+
+
+
+
+
+def redraw_game_window():
     """
     Redraws the game window
     """
-    global walk_count
+    global walk_count, left, right
     display_surface.blit(bg, (0, 0))
+    if walk_count + 1 >= 27:
+        walk_count = 0
+    if left:
+        display_surface.blit(walk_left[walk_count // 3], (x, y))
+        walk_count += 1
+    elif right:
+        display_surface.blit(walk_right[walk_count // 3], (x, y))
+        walk_count += 1
+    else:
+        display_surface.blit(char, (x, y))
+        walk_count = 0
     pygame.display.update()
 
 
@@ -60,11 +100,12 @@ def main():
     """
     Main function
     """
+    player_character = Player(300, 410, 64, 64)
     global x, y, width, height, velocity, jumps, jumping, run
-    global jumping
     pygame.display.set_caption("dn")
     playing: bool = True
     while playing:
+        clock.tick(27)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 playing = False
@@ -72,40 +113,38 @@ def main():
                 pass
         keys: Sequence[bool] = pygame.key.get_pressed()
         if keys[pygame.K_LEFT]:
-            if x > velocity:
-                x -= velocity
-                left = True
-                right = False
+            if player_character.x > player_character.velocity:
+                player_character.x -= player_character.velocity
+                player_character.left = True
+                player_character.right = False
         elif keys[pygame.K_RIGHT]:
-            if x < DISPLAY_WIDTH - width - velocity:
-                x += velocity
-                left = False
-                right = True
+            if player_character.x < DISPLAY_WIDTH - player_character.width - player_character.velocity:
+                player_character.x += player_character.velocity
+                player_character.left = False
+                player_character.right = True
 
         else:
-            left, right = False, False
-        if not jumping:
+            player_character.left, player_character.right = False, False
+        if not player_character.jumping:
             if keys[pygame.K_SPACE]:
-                jumping = True
+                player_character.jumping = True
+                player_character.left, player_character.right = False, False
+                player_character.walk_count = 0
                 print("ok")
         else:
-            while jumping:
+            if player_character.jumps >= -10:
+                negative = 1
                 print("who")
-                if jumps >= -10:
-                    y -= (jumps * abs(jumps)) * 0.5
-                    jumps -= 1
-                else:
-                    jumps = 10
-                    jumping = False
-                    print("sher")
-        redraw_gamewindow()
+                if player_character.jumps < 0:
+                    negative = -1
+                player_character.y -= (player_character.jumps ** 2) * 0.5 * negative
+                player_character.jumps -= 1
 
-
-class Player(object):
-    """
-    Player class oh yeah
-    """
-    pass
+            else:
+                player_character.jumps = 10
+                player_character.jumping = False
+                print("sher")
+        redraw_game_window()
 
 
 if __name__ == "__main__":
