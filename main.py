@@ -64,16 +64,13 @@ class Player(object):
         self.left: bool = False
         self.right: bool = False
         self.walk_count: int = 0
-        self.bounding_box = (self.x + 17, self.y + 10,28,52)
+        self.bounding_box = (self.x + 17, self.y + 10, 28, 52)
 
     def draw(self, window):
         """
         Draw
         :param window:
         """
-
-
-
 
 
 def redraw_game_window():
